@@ -6,6 +6,32 @@
 </head>
 <body>
 
+<div>
+    <form method="post">
+        <input type="text" name="text" placeholder="Введите сообщение">
+        <input type="text" name="tag" placeholder="Тег">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+<div>
+    <table border="0.5">
+        <tr>
+            <th>Id</th>
+            <th>Text</th>
+            <th>Tag</th>
+        </tr>
+        <tr th:each="message : ${messages}">
+            <td th:utext="${message.id}"></td>
+            <td th:utext="${message.text}"></td>
+            <td th:utext="${message.tag}"></td>
+        </tr>
+
+    </table>
+</div>
+
+
+
 <p th:text= ${some} />
 
 <p>Get your greeting <a href="/greeting">here</a></p>
