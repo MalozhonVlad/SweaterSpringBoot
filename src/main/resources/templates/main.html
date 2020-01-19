@@ -7,6 +7,12 @@
 <body>
 
 <div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<div>
     <form method="post">
         <input type="text" name="text" placeholder="Введите сообщение">
         <input type="text" name="tag" placeholder="Тег">
