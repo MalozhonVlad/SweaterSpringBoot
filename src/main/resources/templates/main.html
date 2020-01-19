@@ -33,11 +33,13 @@
             <th>Id</th>
             <th>Text</th>
             <th>Tag</th>
+            <th>Author</th>
         </tr>
         <tr th:each="message : ${messages}">
             <td th:utext="${message.id}"></td>
             <td th:utext="${message.text}"></td>
             <td th:utext="${message.tag}"></td>
+            <td th:utext="${message.authorName}"></td>
         </tr>
 
     </table>
