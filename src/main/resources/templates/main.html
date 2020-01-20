@@ -8,6 +8,7 @@
 
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 </form>
 
 <!-- Тут надо зделать токен которий будет позволять делать POST запроси а то щас падает!!!!-->
@@ -16,6 +17,7 @@
     <form method="post" action="/main">
         <input type="text" name="text" placeholder="Введите сообщение">
         <input type="text" name="tag" placeholder="Тег">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         <button type="submit">Добавить</button>
     </form>
 </div>

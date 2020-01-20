@@ -24,7 +24,6 @@ public class GreetingController {
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter,  Model model) {
-        log.info("GGGGGGGGGGEEEEEEEEEEEEETTTTTTTTTTTTTTTTTTT______________________");
         Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
@@ -43,9 +42,12 @@ public class GreetingController {
     public String add(@RequestParam String text,
                       @RequestParam String tag,
                       Model model) {
-        log.info("PPPPPPPPPPPPPPPPPPPPPPPPOOOOOOOOOOOOOOOOOSSSSSSSSSSSSTTTTTTTTTTTTT--------");
+
         Message message = new Message(text, tag);
-        messageRepository.save(message);
+        if (text != null && !text.isEmpty() & tag != null && !tag.isEmpty()) {
+            messageRepository.save(message);
+        }
+
 
         Iterable<Message> messages = messageRepository.findAll();
 
