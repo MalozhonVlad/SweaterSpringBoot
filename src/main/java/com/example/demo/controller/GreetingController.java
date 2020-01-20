@@ -3,29 +3,28 @@ package com.example.demo.controller;
 import com.example.demo.domain.Message;
 import com.example.demo.repository.MessageRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class GreetingController {
 
     private final MessageRepository messageRepository;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-                           Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("/")
+    public String greeting(Model model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter,  Model model) {
+        log.info("GGGGGGGGGGEEEEEEEEEEEEETTTTTTTTTTTTTTTTTTT______________________");
         Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
@@ -40,10 +39,11 @@ public class GreetingController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text,
                       @RequestParam String tag,
                       Model model) {
+        log.info("PPPPPPPPPPPPPPPPPPPPPPPPOOOOOOOOOOOOOOOOOSSSSSSSSSSSSTTTTTTTTTTTTT--------");
         Message message = new Message(text, tag);
         messageRepository.save(message);
 
@@ -53,6 +53,13 @@ public class GreetingController {
 
         return "main";
     }
+
+//    @GetMapping("/login")
+//    public String loginPage(@RequestParam String username,
+//                            @RequestParam String password) {
+//        log.info("Have username = " + username + ", password = " + password);
+//        return "main";
+//    }
 
 //    @PostMapping("/filter")
 //    public String filter(@RequestParam String filter, Model model) {

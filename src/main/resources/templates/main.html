@@ -6,8 +6,14 @@
 </head>
 <body>
 
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<!-- Тут надо зделать токен которий будет позволять делать POST запроси а то щас падает!!!!-->
+
 <div>
-    <form method="post">
+    <form method="post" action="/main">
         <input type="text" name="text" placeholder="Введите сообщение">
         <input type="text" name="tag" placeholder="Тег">
         <button type="submit">Добавить</button>
@@ -36,10 +42,6 @@
 
     </table>
 </div>
-
-
-
-<p th:text= ${some} />
 
 <p>Get your greeting <a href="/greeting">here</a></p>
 
