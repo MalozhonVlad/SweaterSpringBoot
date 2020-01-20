@@ -16,8 +16,8 @@
 
 <div>Список сообщений</div>
 
-<form method="post" action="filter">
-    <input type="text" name="filter">
+<form method="get" action="">
+    <input type="text" name="filter" th:value="${filter}">
     <button type="submit">Найти</button>
 </form>
 
