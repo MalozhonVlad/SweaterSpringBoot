@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.Message;
 import com.example.demo.domain.User;
 import com.example.demo.repository.MessageRepository;
+import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +27,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Message> messages = messageRepository.findAll();
+        Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepository.findByTag(filter);
@@ -33,7 +36,7 @@ public class MainController {
         }
 
         model.addAttribute("messages", messages);
-        model.addAttribute("filter", filter);
+//        model.addAttribute("filter", filter);
 
         return "main";
     }
