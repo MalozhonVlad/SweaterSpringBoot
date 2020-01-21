@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class GreetingController {
+public class MainController {
 
     private final MessageRepository messageRepository;
 

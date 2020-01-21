@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import static org.hamcrest.Matchers.containsString;
-import com.example.demo.controller.GreetingController;
+import com.example.demo.controller.MainController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,7 +30,7 @@ class SweaterApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private GreetingController greetingController;
+    private MainController greetingController;
 
     @Test
     void contextLoads() {
