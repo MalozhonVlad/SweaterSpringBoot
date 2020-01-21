@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class RegistrationController {
 
         User userFromDb = userRepository.findByUsername(user.getUsername());
 
-        if (userFromDb != null ){
+        if (userFromDb != null) {
             model.addAttribute("message", "User already exists");
             return "registration";
         }
@@ -37,6 +38,13 @@ public class RegistrationController {
         userRepository.save(user);
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/allUsers")
+    public String allUsers(Model model) {
+        List<User> allUsers = userRepository.findAll();
+        model.addAttribute("allUsers", allUsers);
+        return "allUsers";
     }
 
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>allUsers</title>
+</head>
+<body>
+
+<div>
+    <table border="0.5">
+        <tr>
+            <th>Users</th>
+        </tr>
+        <tr th:each="allUser : ${allUsers}">
+            <td th:utext="${allUser.id}"></td>
+            <td th:utext="${allUser.username}"></td>
+            <td th:utext="${allUser.password}"></td>
+            <td th:utext="${allUser.active}"></td>
+        </tr>
+    </table>
+</div>
+
+
+<a href="/main">Back to Main</a>
+
+</body>
+</html>

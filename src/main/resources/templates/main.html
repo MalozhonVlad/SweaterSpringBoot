@@ -11,8 +11,6 @@
     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 </form>
 
-<!-- Тут надо зделать токен которий будет позволять делать POST запроси а то щас падает!!!!-->
-
 <div>
     <form method="post" action="/main">
         <input type="text" name="text" placeholder="Введите сообщение">
@@ -35,15 +33,20 @@
             <th>Id</th>
             <th>Text</th>
             <th>Tag</th>
+            <th>Author</th>
         </tr>
         <tr th:each="message : ${messages}">
             <td th:utext="${message.id}"></td>
             <td th:utext="${message.text}"></td>
             <td th:utext="${message.tag}"></td>
+            <td th:utext="${message.authorName}"></td>
         </tr>
 
     </table>
 </div>
+
+
+<a href="/allUsers">See all users</a>
 
 
 </body>
