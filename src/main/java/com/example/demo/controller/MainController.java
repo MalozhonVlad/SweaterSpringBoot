@@ -43,9 +43,12 @@ public class MainController {
                       @RequestParam String text,
                       @RequestParam String tag,
                       Model model) {
-        System.out.println(user + "@PostMapping(/main)");
+
         Message message = new Message(text, tag, user);
-        messageRepository.save(message);
+
+        if (text != null && !text.isEmpty() & tag != null && !tag.isEmpty()) {
+            messageRepository.save(message);
+        }
 
         Iterable<Message> messages = messageRepository.findAll();
 
