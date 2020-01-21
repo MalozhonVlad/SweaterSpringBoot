@@ -3,22 +3,30 @@ package com.example.demo.controller;
 import com.example.demo.domain.Message;
 import com.example.demo.domain.User;
 import com.example.demo.repository.MessageRepository;
-import com.example.demo.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MainController {
 
     private final MessageRepository messageRepository;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @GetMapping("/")
     public String greeting(Model model) {
@@ -36,7 +44,7 @@ public class MainController {
         }
 
         model.addAttribute("messages", messages);
-//        model.addAttribute("filter", filter);
+        model.addAttribute("filter", filter);
 
         return "main";
     }
@@ -45,9 +53,24 @@ public class MainController {
     public String add(@AuthenticationPrincipal User user,
                       @RequestParam String text,
                       @RequestParam String tag,
-                      Model model) {
+                      Model model,
+                      @RequestParam("file") MultipartFile file) throws IOException {
 
         Message message = new Message(text, tag, user);
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()){
+                uploadDir.mkdirs();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            message.setFilename(resultFilename);
+        }
 
         if (text != null && !text.isEmpty() & tag != null && !tag.isEmpty()) {
             messageRepository.save(message);
