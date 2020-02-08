@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{user}")
-    public String userEditForm(@PathVariable User user, Model model) { // Spring очень умний и тут я сразу получаю юзера из бази !!!!
+    public String userEditForm(@PathVariable User user, Model model) { // Spring очень умний и тут я сразу получаю юзера из бази по айдишнику !!!!
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "userEdit";
