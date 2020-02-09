@@ -29,9 +29,9 @@ public class User implements UserDetails {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
-    @Transient // при работе с бд не надо сохранять ето поле либо получать его из бд !! Для Hibernate
-    @NotBlank(message = "Password confirmation cannot be empty")
-    private String password2;
+//    @Transient // при работе с бд не надо сохранять ето поле либо получать его из бд !! Для Hibernate
+//    @NotBlank(message = "Password confirmation cannot be empty")
+//    private String password2;
 
     private boolean active;
 
