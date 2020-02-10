@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="g-recaptcha" data-sitekey="6LduQVoUAAAAAD8hypySNroht_6UnzhoQRV3QIWc"></div>
+                <div class="g-recaptcha" data-sitekey="6LfxFNcUAAAAAI59Yr_opvGdzvih4rCzXgHqAiPS"></div>
                 <#if captchaError??>
                     <div class="alert alert-danger" role="alert">
                         ${captchaError}
