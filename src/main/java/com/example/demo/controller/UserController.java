@@ -101,6 +101,8 @@ public class UserController {
             model.addAttribute("users", user.getSubscribers());
         }
 
+
+
         return "subscriptions";
     }
 }
