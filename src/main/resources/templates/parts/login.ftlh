@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="g-recaptcha" data-sitekey="6LfxFNcUAAAAAI59Yr_opvGdzvih4rCzXgHqAiPS"></div>
+                <div class="g-recaptcha" data-sitekey="6LduQVoUAAAAAD8hypySNroht_6UnzhoQRV3QIWc"></div>
                 <#if captchaError??>
                     <div class="alert alert-danger" role="alert">
                         ${captchaError}
@@ -71,6 +71,6 @@
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button class="btn btn-primary" type="submit">Sign Out</button>
+        <button class="btn btn-primary" type="submit"><#if user??>Sign Out<#else>Log in</#if></button>
     </form>
 </#macro>
