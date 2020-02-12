@@ -55,6 +55,7 @@ public class UserController {
         return "profile";
     }
 
+
     @PostMapping("profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
